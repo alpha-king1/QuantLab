@@ -1,0 +1,121 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="annotated-doc" />
+          <option value="annotated-types" />
+          <option value="anyio" />
+          <option value="blinker" />
+          <option value="certifi" />
+          <option value="charset-normalizer" />
+          <option value="click" />
+          <option value="colorama" />
+          <option value="fastapi" />
+          <option value="Flask" />
+          <option value="h11" />
+          <option value="idna" />
+          <option value="itsdangerous" />
+          <option value="Jinja2" />
+          <option value="MarkupSafe" />
+          <option value="psycopg2-binary" />
+          <option value="pydantic" />
+          <option value="pydantic_core" />
+          <option value="python-dotenv" />
+          <option value="requests" />
+          <option value="starlette" />
+          <option value="typing-inspection" />
+          <option value="typing_extensions" />
+          <option value="urllib3" />
+          <option value="uvicorn" />
+          <option value="Werkzeug" />
+          <option value="asttokens" />
+          <option value="cachetools" />
+          <option value="cffi" />
+          <option value="comm" />
+          <option value="cryptography" />
+          <option value="debugpy" />
+          <option value="decorator" />
+          <option value="deprecation" />
+          <option value="executing" />
+          <option value="fsspec" />
+          <option value="h2" />
+          <option value="hpack" />
+          <option value="httpcore" />
+          <option value="httpx" />
+          <option value="hyperframe" />
+          <option value="ipykernel" />
+          <option value="ipython" />
+          <option value="ipython_pygments_lexers" />
+          <option value="jedi" />
+          <option value="jupyter_client" />
+          <option value="jupyter_core" />
+          <option value="markdown-it-py" />
+          <option value="matplotlib-inline" />
+          <option value="mdurl" />
+          <option value="mmh3" />
+          <option value="multidict" />
+          <option value="nest_asyncio" />
+          <option value="numpy" />
+          <option value="packaging" />
+          <option value="pandas" />
+          <option value="parso" />
+          <option value="platformdirs" />
+          <option value="postgrest" />
+          <option value="prompt_toolkit" />
+          <option value="propcache" />
+          <option value="psutil" />
+          <option value="pure_eval" />
+          <option value="pycparser" />
+          <option value="Pygments" />
+          <option value="pyiceberg" />
+          <option value="PyJWT" />
+          <option value="pyparsing" />
+          <option value="pyroaring" />
+          <option value="python-dateutil" />
+          <option value="PyYAML" />
+          <option value="pyzmq" />
+          <option value="realtime" />
+          <option value="rich" />
+          <option value="setuptools" />
+          <option value="six" />
+          <option value="stack_data" />
+          <option value="storage3" />
+          <option value="StrEnum" />
+          <option value="strictyaml" />
+          <option value="supabase" />
+          <option value="supabase-auth" />
+          <option value="supabase-functions" />
+          <option value="tenacity" />
+          <option value="tornado" />
+          <option value="v20" />
+          <option value="traitlets" />
+          <option value="tzdata" />
+          <option value="ujson" />
+          <option value="wcwidth" />
+          <option value="websockets" />
+          <option value="wheel" />
+          <option value="yarl" />
+          <option value="zstandard" />
+          <option value="schedule" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStubPackagesAdvertiser" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="pandas" />
+          <option value="scipy" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="tpqoa" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
