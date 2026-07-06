@@ -6,12 +6,11 @@ class Performance:
         returns['failed'] = returns['Return'] <= 0
 
         failure_rate = returns['failed'].mean()
-        print(f'failure rate: {failure_rate}')
 
         returns['passed'] = returns['Return'] >= 0
 
         win_rate = returns['passed'].mean()
-        print(f'win rate: {win_rate}')
+
         winloss = {
             'failure_rate': failure_rate,
             'win rate': win_rate
@@ -59,7 +58,8 @@ class Performance:
                 'sample_size': len(structure)
             })
         yearly_result = pd.DataFrame(result)
-        return yearly_result
+
+        return yearly_result.to_dict(orient="records")
 
     def column(self,data, returns, column_name = 'vol_regime'):
         vol_results = []
@@ -88,7 +88,7 @@ class Performance:
             })
 
         result = pd.DataFrame(vol_results)
-        return result
+        return result.to_dict(orient="records"),
 
     def get_performance(self, returns, data):
         winloss = self.winloss_rate(returns)

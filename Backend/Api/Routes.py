@@ -3,7 +3,7 @@ from starlette import status
 
 from Backend.Api.AnalyseRequest import AnalysisRequest
 from Backend.Core.Engine import Analyse
-from Backend.Data.LoadData import LoadData, CONFIG
+from Backend.Data.LoadData import LoadData
 
 router = APIRouter()
 

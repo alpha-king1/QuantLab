@@ -5,10 +5,12 @@ from Backend.Data.LoadData import LoadData
 from Backend.Data.Preprocess import Preprocess
 from Backend.Models.Train_model import Model
 from Backend.Strategies.registry import STRATEGIES
+from fastapi.encoders import jsonable_encoder
+
 
 
 class Analyse:
-    def __init__(self, pair, granularity,user_strategy, forward_return = 10, start_date='2015-10', end_date='2016-01'):
+    def __init__(self, pair, granularity,user_strategy, forward_return = 10, start_date='2015-11', end_date='2016-01'):
         self.pair = pair
         self.granularity = granularity
         self.start_date = start_date
@@ -47,6 +49,9 @@ class Analyse:
         # self.performance.column(processed_data, filtered_returns)
         # self.execution.execute_trade(filtered_returns, 10000)
         # self.execution.plot_equity()
+        information.append({'stats': stats})
+        information.append({'performance': performance})
+
         return information
 
     def get_pairs(self):
@@ -54,4 +59,4 @@ class Analyse:
 
 if __name__ == '__main__':
     yoo = Analyse("XAU_USD", "H1", 'bearish_ob')
-    print(yoo.get_pairs())
+    yoo.run_engine()
