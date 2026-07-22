@@ -47,6 +47,6 @@ def get_timeframe():
 
 @router.post('/analyse')
 def analyse(request: AnalysisRequest):
-    analysis = Analyse(request.pair, request.timeframe, request.strategy)
+    analysis = Analyse(pair=request.pair, granularity=request.timeframe, user_strategy=request.strategy, start_date=request.start_date, end_date=request.end_date)
     return analysis.run_engine()
 

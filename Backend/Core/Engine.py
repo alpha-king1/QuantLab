@@ -5,16 +5,16 @@ from Backend.Data.LoadData import LoadData
 from Backend.Data.Preprocess import Preprocess
 from Backend.Models.Train_model import Model
 from Backend.Strategies.registry import STRATEGIES
-from fastapi.encoders import jsonable_encoder
-
+import math
 
 
 class Analyse:
-    def __init__(self, pair, granularity,user_strategy, forward_return = 10, start_date='2015-11', end_date='2016-01'):
+    def __init__(self, pair, granularity,user_strategy, forward_return = 10, start_date='2015-11', end_date='2016-01', capital=100000):
         self.pair = pair
         self.granularity = granularity
         self.start_date = start_date
         self.end_date = end_date
+        self.capital = capital
         self.user_strategy = user_strategy
         self.forward_return = forward_return
         self.dataModule = LoadData()
@@ -34,29 +34,45 @@ class Analyse:
         strategy_return = self.strategy.run(processed_data)
         stats = self.stats.stats(strategy_return, processed_data)
         performance = self.performance.get_performance(strategy_return, processed_data)
-        # self.execution.execute_trade(strategy_return, 10000)
-        # self.execution.plot_equity()
-        # self.model = self.modelClass.train_model(strategy_return, self.user_strategy)
-        # self.modelClass.show_importance()
-        # self.strategy.x = self.modelClass.x
-        # self.strategy.model = self.model
-        # filtered_returns = self.strategy.run(processed_data, model = True)
-        # self.stats.get_stats(filtered_returns)
-        # self.stats.statistical_tests(filtered_returns, processed_data)
-        # self.stats.bootstrap_resampling(filtered_returns)
-        # self.performance.winloss_rate(filtered_returns)
-        # self.performance.yearly(processed_data, filtered_returns)
-        # self.performance.column(processed_data, filtered_returns)
-        # self.execution.execute_trade(filtered_returns, 10000)
-        # self.execution.plot_equity()
-        information.append({'stats': stats})
-        information.append({'performance': performance})
+        trade = self.execution.execute_trade(strategy_return, self.capital)
+        models_info = self.modelClass.train_model(strategy_return, self.user_strategy)
+        model_importance = self.modelClass.show_importance()
+        self.strategy.x = self.modelClass.x
+        self.strategy.model = self.modelClass.model
+        filtered_returns = self.strategy.run(processed_data, model = True)
+        model_filtered_stats = self.stats.stats(filtered_returns, processed_data)
+        model_filtered_performance = self.performance.get_performance(filtered_returns, processed_data)
+        model_filtered_execution = self.execution.execute_trade(filtered_returns, 10000)
 
+        data = {
+                'stats': stats,
+                'performance': performance,
+                'trade_evaluation': trade,
+                'model_importance': model_importance,
+                'model_filtered':
+                    {
+                        'stats': model_filtered_stats,
+                        'performance': model_filtered_performance,
+                        'trade_evaluation': model_filtered_execution
+                    }
+                }
+
+        information.append(self.clean_nans(data))
         return information
 
     def get_pairs(self):
         return self.dataModule.get_pairs()
 
+    def clean_nans(self, obj):
+        if isinstance(obj, float) and math.isnan(obj):
+            return None  # Serializes to `null` in JSON (or return 0.0)
+        elif isinstance(obj, dict):
+            return {k: self.clean_nans(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [self.clean_nans(v) for v in obj]
+        return obj
+
+
 if __name__ == '__main__':
-    yoo = Analyse("XAU_USD", "H1", 'bearish_ob')
+    yoo = Analyse("XAU_USD", "H1", 'bullish_ob', start_date='2020-10-01', end_date='2021-01-01')
     yoo.run_engine()
