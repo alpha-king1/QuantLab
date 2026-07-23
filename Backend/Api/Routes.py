@@ -37,9 +37,9 @@ def get_strategies():
 @router.get('/timeframe')
 def get_timeframe():
     return [
-        "M1",
-        "M5",
-        "M15",
+        # "M1",
+        # "M5",
+        # "M15",
         "H1",
         "H4",
         "D"
@@ -47,6 +47,6 @@ def get_timeframe():
 
 @router.post('/analyse')
 def analyse(request: AnalysisRequest):
-    analysis = Analyse(pair=request.pair, granularity=request.timeframe, user_strategy=request.strategy, start_date=request.start_date, end_date=request.end_date)
+    analysis = Analyse(pair=request.pair, granularity=request.timeframe, user_strategy=request.strategy, start_date=request.start_date, end_date=request.end_date, capital=request.capital)
     return analysis.run_engine()
 

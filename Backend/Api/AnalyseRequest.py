@@ -11,3 +11,5 @@ class AnalysisRequest(BaseModel):
     start_date: str
 
     end_date: str
+
+    capital: float

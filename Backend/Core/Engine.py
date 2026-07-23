@@ -42,7 +42,7 @@ class Analyse:
         filtered_returns = self.strategy.run(processed_data, model = True)
         model_filtered_stats = self.stats.stats(filtered_returns, processed_data)
         model_filtered_performance = self.performance.get_performance(filtered_returns, processed_data)
-        model_filtered_execution = self.execution.execute_trade(filtered_returns, 10000)
+        model_filtered_execution = self.execution.execute_trade(filtered_returns, self.capital)
 
         data = {
                 'stats': stats,
