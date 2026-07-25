@@ -1,0 +1,4 @@
+Backend/Config/oanda.cfg
+__pychache__/
+*.pyc
+.env
